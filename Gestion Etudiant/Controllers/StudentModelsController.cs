@@ -149,5 +149,15 @@ namespace Gestion_Etudiant.Controllers
         {
             return _context.StudentModel.Any(e => e.ID == id);
         }
+
+        public ActionResult Search(string term)
+        {
+            var result = _context.StudentModel.Where(a => a.FirstName.Contains(term) || a.LastName.Contains(term) || a.CIN.Contains(term)).ToList();
+
+            return View("Index", result);
+            
+            
+        }
+
     }
 }
