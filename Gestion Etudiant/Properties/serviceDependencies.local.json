@@ -3,6 +3,10 @@
     "mssql1": {
       "type": "mssql.local",
       "connectionId": "Gestion_EtudiantContext"
+    },
+    "mssql2": {
+      "type": "mssql.local",
+      "connectionId": "UserContextConnection"
     }
   }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Gestion_Etudiant.Data;
 using Gestion_Etudiant.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gestion_Etudiant.Controllers
 {
@@ -20,6 +21,7 @@ namespace Gestion_Etudiant.Controllers
         }
 
         // GET: StudentModels
+        
         public async Task<IActionResult> Index()
         {
             return View(await _context.StudentModel.ToListAsync());
@@ -44,6 +46,7 @@ namespace Gestion_Etudiant.Controllers
         }
 
         // GET: StudentModels/Create
+        //[Authorize]
         public IActionResult Create()
         {
             return View();

@@ -29,6 +29,9 @@ namespace Gestion_Etudiant
 
             services.AddDbContext<Gestion_EtudiantContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Gestion_EtudiantContext")));
+
+            services.AddRazorPages();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,9 +53,12 @@ namespace Gestion_Etudiant
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
+
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
