@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Gestion_Etudiant.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Gestion_Etudiant
 {
@@ -30,8 +31,13 @@ namespace Gestion_Etudiant
             services.AddDbContext<Gestion_EtudiantContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Gestion_EtudiantContext")));
 
+            //services.AddDefaultIdentity<IdentityUser>();
+                //.AddRoles<IdentityRole>()
+                //.AddEntityFrameworkStores<Gestion_EtudiantContext>();
+
             services.AddRazorPages();
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,9 +57,9 @@ namespace Gestion_Etudiant
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
+           
 
 
             app.UseEndpoints(endpoints =>

@@ -46,7 +46,7 @@ namespace Gestion_Etudiant.Controllers
         }
 
         // GET: StudentModels/Create
-        //[Authorize]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
