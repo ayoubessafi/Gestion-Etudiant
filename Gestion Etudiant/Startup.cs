@@ -26,15 +26,24 @@ namespace Gestion_Etudiant
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
 
             services.AddDbContext<Gestion_EtudiantContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Gestion_EtudiantContext")));
 
-            //services.AddDefaultIdentity<IdentityUser>();
-                //.AddRoles<IdentityRole>()
-                //.AddEntityFrameworkStores<Gestion_EtudiantContext>();
+            services.AddAuthentication()
+               .AddGoogle(options =>
+               {
+                   options.ClientId = Configuration["App:GoogleClientId"];
+                   options.ClientSecret = Configuration["App:GoogleClientSecret"];
+               })
+               .AddFacebook(options =>
+               {
+                   options.AppId = Configuration["App:FacebookClientId"];
+                   options.ClientSecret = Configuration["App:FacebookClientSecret"];
+                   options.AccessDeniedPath = "/AccessDeniedPathInfo";
+               });
 
+            services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddControllers();
 
